@@ -10,11 +10,10 @@
         body { font-family: Arial, sans-serif; }
         .container { width: 80%; margin: auto; }
         .header { text-align: center; }
-        .chart-container { display: flex; justify-content: space-between; }
-        .chart { width: 45%; }
-        .progress-charts { margin-top: 20px; }
-        .progress-chart { margin-bottom: 20px; }
-        /* Add styles for the table */
+        .content { display: flex; justify-content: space-between; }
+        .table-container, .image-container { width: 45%; }
+        .table-container { padding-right: 10px; }
+        .image-container { padding-left: 10px; }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -27,6 +26,10 @@
         th {
             background-color: #f2f2f2;
         }
+        .chart-title {
+            text-align: center;
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
@@ -34,9 +37,9 @@
         <div class="header">
             <h1>Battery Testing Dashboard</h1>
         </div>
-        <div class="chart-container">
-            <!-- Table division -->
-            <div class="table">
+        <div class="content">
+            <div class="table-container">
+                <h2>Battery Quantities</h2>
                 <table>
                     <thead>
                         <tr>
@@ -45,7 +48,6 @@
                             <th>Capacity</th>
                             <th>Weight</th>
                             <th>Supplier</th>
-                            <!-- Add more header cells if needed -->
                         </tr>
                     </thead>
                     <tbody>
@@ -55,27 +57,26 @@
                             <td>3000mAh</td>
                             <td>45g</td>
                             <td>Supplier A</td>
-                            <!-- Add more data cells for each column as needed -->
                         </tr>
-                        <!-- Repeat the row for each battery type -->
-                        <!-- ... -->
+                        <!-- Repeat the row for each battery type, add a second row here -->
+                        <tr>
+                            <td>Nickel-Metal Hydride</td>
+                            <td>AA</td>
+                            <td>2000mAh</td>
+                            <td>30g</td>
+                            <td>Supplier B</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            <!-- Scatter plot division -->
-            <div class="chart" id="scatterplot">
-                <!-- Configurable scatter plot will go here -->
+            <div class="image-container">
+                <div>
+                    <h2>Battery Baselines</h2>
+                    <!-- Assuming 'graph.jpg' is in the same path as your HTML file -->
+                    <img src="template graph.jpg" alt="Baseline Graph" style="max-width:100%;">
+                </div>
             </div>
         </div>
-        <!-- Progress bar charts division -->
-        <div class="progress-charts">
-            <!-- Progress bar charts will go here -->
-        </div>
     </div>
-
-    <!-- Initialize charts with JavaScript -->
-    <script>
-        // We'll add chart initialization here later
-    </script>
 </body>
 </html>
