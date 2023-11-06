@@ -51,6 +51,19 @@
                     imagePath = 'coulomb.png';
                     break;
             }
+            function changeImageB(testType) {
+            var imagePath = '';
+            switch (testType) {
+                case 'Constant Pressure':
+                    imagePath = 'swelling3.png';
+                    break;
+                case 'CCCV Cycling':
+                    imagePath = '3c%20ocv.png';
+                    break;
+                case 'Calendar Life':
+                    imagePath = 'coulomb.png';
+                    break;
+            }
             document.getElementById('testImage').src = imagePath;
             document.getElementById('testImage').alt = testType;
         }
@@ -107,7 +120,7 @@
             </table>
         </div>
         <div class="image">
-            <img id="testImage" src="default_image.jpg" alt="Default Image" style="max-width: 100%; height: auto;">
+            <img id="testImageB" src="default_image.jpg" alt="Default Image" style="max-width: 100%; height: auto;">
         </div>
     </div>
     <h2>Model B</h2>
@@ -123,7 +136,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr onclick="changeImage('Constant Pressure')">
+                    <tr onclick="changeImageB('Constant Pressure')">
                         <td>Constant Pressure</td>
                         <td>25°C</td>
                         <td>10</td>
@@ -133,7 +146,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr onclick="changeImage('CCCV Cycling')">
+                    <tr onclick="changeImageB('CCCV Cycling')">
                         <td>CCCV Cycling</td>
                         <td>25°C</td>
                         <td>10</td>
@@ -143,7 +156,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr onclick="changeImage('Calendar Life')">
+                    <tr onclick="changeImageB('Calendar Life')">
                         <td>Calendar Life</td>
                         <td>25°C</td>
                         <td>10</td>
