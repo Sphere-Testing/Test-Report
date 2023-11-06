@@ -101,7 +101,10 @@
                 // Assume that the first row of the Excel file is the header
                 const keys = Object.keys(jsonData[0]);
                 populateAxisSelectors(keys);
-                return jsonData;
+                globalJsonData = jsonData; // Set the global variable with the JSON data
+            })
+            .catch(error => {
+                console.error('Error fetching or parsing Excel file:', error);
             });
     }
     
@@ -143,6 +146,7 @@
     
     // Call the function on load to populate the axis selectors
     fetchAndParseExcel();
+    
     </script>
     <div class="container">
         <div class="header">
