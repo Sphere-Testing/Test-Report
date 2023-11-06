@@ -14,40 +14,7 @@
         .chart { width: 45%; }
         .progress-charts { margin-top: 20px; }
         .progress-chart { margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Battery Testing Dashboard</h1>
-        </div>
-        <div class="chart-container">
-            <div class="table">
-                <!-- Static table will go here -->
-            </div>
-            <div class="chart" id="scatterplot">
-                <!-- Configurable scatter plot will go here -->
-            </div>
-        </div>
-        <div class="progress-charts">
-            <!-- Progress bar charts will go here -->
-        </div>
-    </div>
-
-    <!-- Initialize charts with JavaScript -->
-    <script>
-        // We'll add chart initialization here later
-    </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Battery Overview Table</title>
-    <style>
-        /* Add some basic styling */
+        /* Add styles for the table */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -63,31 +30,52 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>Battery Testing Dashboard</h1>
+        </div>
+        <div class="chart-container">
+            <!-- Table division -->
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Battery Type</th>
+                            <th>Model</th>
+                            <th>Capacity</th>
+                            <th>Weight</th>
+                            <th>Supplier</th>
+                            <!-- Add more header cells if needed -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lithium-ion</td>
+                            <td>18650</td>
+                            <td>3000mAh</td>
+                            <td>45g</td>
+                            <td>Supplier A</td>
+                            <!-- Add more data cells for each column as needed -->
+                        </tr>
+                        <!-- Repeat the row for each battery type -->
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Scatter plot division -->
+            <div class="chart" id="scatterplot">
+                <!-- Configurable scatter plot will go here -->
+            </div>
+        </div>
+        <!-- Progress bar charts division -->
+        <div class="progress-charts">
+            <!-- Progress bar charts will go here -->
+        </div>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Battery Type</th>
-                <th>Model</th>
-                <th>Capacity</th>
-                <th>Weight</th>
-                <th>Supplier</th>
-                <!-- Add more header cells if needed -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Lithium-ion</td>
-                <td>18650</td>
-                <td>3000mAh</td>
-                <td>45g</td>
-                <td>Supplier A</td>
-                <!-- Add more data cells for each column as needed -->
-            </tr>
-            <!-- Repeat the row for each battery type -->
-            <!-- ... -->
-        </tbody>
-    </table>
-
+    <!-- Initialize charts with JavaScript -->
+    <script>
+        // We'll add chart initialization here later
+    </script>
 </body>
 </html>
