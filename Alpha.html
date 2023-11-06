@@ -45,7 +45,7 @@
                     imagePath = 'swelling3.png';
                     break;
                 case 'CCCV Cycling':
-                    imagePath = '3c_ocv.png';
+                    imagePath = '3c%20ocv.png';
                     break;
                 case 'Calendar Life':
                     imagePath = 'coulomb.png';
@@ -61,6 +61,56 @@
         <h1>Data Overview</h1>
     </div>
     <h2>Model A</h2>
+    <div class="content">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Type</th>
+                        <th>Temperature</th>
+                        <th># of Cells</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="changeImage('Constant Pressure')">
+                        <td>Constant Pressure</td>
+                        <td>25°C</td>
+                        <td>10</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 60%;">60%</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="changeImage('CCCV Cycling')">
+                        <td>CCCV Cycling</td>
+                        <td>25°C</td>
+                        <td>10</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 40%;">40%</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="changeImage('Calendar Life')">
+                        <td>Calendar Life</td>
+                        <td>25°C</td>
+                        <td>10</td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 80%;">80%</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="image">
+            <img id="testImage" src="default_image.jpg" alt="Default Image" style="max-width: 100%; height: auto;">
+        </div>
+    </div>
+    <h2>Model B</h2>
     <div class="content">
         <div class="table">
             <table>
