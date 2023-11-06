@@ -6,6 +6,12 @@
     <!-- Include Chart.js CDN for charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Add some basic styles -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Include SheetJS (xlsx.full.min.js) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <!-- Add some basic styles -->
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
         .container { width: 90%; margin: 20px auto; }
@@ -110,8 +116,11 @@
             </div>
             <div class="image-container">
                 <h2>Battery Baselines</h2>
-               
-                <img src="template%20graph.jpg" alt="Baseline Graph">
+                <!-- Interactive scatter plot will go here -->
+                <div id="scatterplot"></div>
+                <select id="x-axis-select"></select>
+                <select id="y-axis-select"></select>
+                <button onclick="plotFromExcel()">Plot Data</button>
             </div>
         </div>
     </div>
@@ -173,5 +182,66 @@
             </tr>
         </table>
     </div>
+<select id="x-axis-select"></select>
+<select id="y-axis-select"></select>
+<button onclick="plotFromExcel()">Plot Data</button>
+<div id="myPlot"></div>
+
+<script>
+// Function to fetch Excel, convert to JSON, and populate dropdowns
+function fetchAndParseExcel() {
+    fetch('TestKPI.xlsx')
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => {
+            // Parse the Excel file
+            const workbook = XLSX.read(arrayBuffer, { type: "array" });
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+            
+            // Assume that the first row of the Excel file is the header
+            const keys = Object.keys(jsonData[0]);
+            populateAxisSelectors(keys);
+            return jsonData;
+        });
+}
+
+// Function to populate the axis selectors
+function populateAxisSelectors(keys) {
+    const xAxisSelect = document.getElementById('x-axis-select');
+    const yAxisSelect = document.getElementById('y-axis-select');
+    
+    keys.forEach(key => {
+        xAxisSelect.options.add(new Option(key, key));
+        yAxisSelect.options.add(new Option(key, key));
+    });
+}
+
+// Function to plot data from Excel
+function plotFromExcel() {
+    fetchAndParseExcel().then(jsonData => {
+        const xAxis = document.getElementById('x-axis-select').value;
+        const yAxis = document.getElementById('y-axis-select').value;
+        
+        const trace = {
+            x: jsonData.map(item => item[xAxis]),
+            y: jsonData.map(item => item[yAxis]),
+            mode: 'markers',
+            type: 'scatter'
+        };
+        
+        const layout = {
+            title: 'Scatter Plot',
+            xaxis: { title: xAxis },
+            yaxis: { title: yAxis }
+        };
+        
+        Plotly.newPlot('myPlot', [trace], layout);
+    });
+}
+
+// Call the function on load to populate the axis selectors
+fetchAndParseExcel();
+</script>
 </body>
 </html>
