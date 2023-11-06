@@ -7,16 +7,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Add some basic styles -->
     <style>
-        body { font-family: Arial, sans-serif; }
-        .container { width: 80%; margin: auto; }
-        .header { text-align: center; }
-        .content { display: flex; justify-content: space-between; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { width: 90%; margin: 20px auto; }
+        .header { text-align: center; padding-bottom: 20px; }
+        .content { display: flex; justify-content: space-around; align-items: flex-start; }
         .table-container, .image-container { width: 45%; }
-        .table-container { padding-right: 10px; }
-        .image-container { padding-left: 10px; }
+        .table-container { padding-right: 20px; }
+        .image-container { padding-left: 20px; }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
         }
         th, td {
             border: 1px solid #dddddd;
@@ -29,6 +30,14 @@
         .chart-title {
             text-align: center;
             margin-top: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -58,7 +67,6 @@
                             <td>45g</td>
                             <td>Supplier A</td>
                         </tr>
-                        <!-- Repeat the row for each battery type, add a second row here -->
                         <tr>
                             <td>Nickel-Metal Hydride</td>
                             <td>AA</td>
@@ -70,11 +78,9 @@
                 </table>
             </div>
             <div class="image-container">
-                <div>
-                    <h2>Battery Baselines</h2>
-                    <!-- Assuming 'graph.jpg' is in the same path as your HTML file -->
-                    <img src="template%20graph.jpg" alt="Baseline Graph" style="max-width:100%;">
-                </div>
+                <h2>Battery Baselines</h2>
+                <!-- Correct the image path and name in the src attribute -->
+                <img src="template%20graph.jpg" alt="Baseline Graph">
             </div>
         </div>
     </div>
