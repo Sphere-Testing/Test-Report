@@ -79,6 +79,71 @@
     </style>
 </head>
 <body>
+    <select id="x-axis-select"></select>
+    <select id="y-axis-select"></select>
+    <button onclick="plotFromExcel()">Plot Data</button>
+    <div id="myPlot"></div>
+    
+    <script>
+    let globalJsonData = null;
+        
+    // Function to fetch Excel, convert to JSON, and populate dropdowns
+    function fetchAndParseExcel() {
+        fetch('TestKPI.xlsx')
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => {
+                // Parse the Excel file
+                const workbook = XLSX.read(arrayBuffer, { type: "array" });
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet);
+                
+                // Assume that the first row of the Excel file is the header
+                const keys = Object.keys(jsonData[0]);
+                populateAxisSelectors(keys);
+                return jsonData;
+            });
+    }
+    
+    // Function to populate the axis selectors
+    function populateAxisSelectors(keys) {
+        const xAxisSelect = document.getElementById('x-axis-select');
+        const yAxisSelect = document.getElementById('y-axis-select');
+        
+        keys.forEach(key => {
+            xAxisSelect.options.add(new Option(key, key));
+            yAxisSelect.options.add(new Option(key, key));
+        });
+    }
+    
+    // Function to plot data from Excel
+    function plotFromExcel() {
+        if (globalJsonData) {
+            const xAxis = document.getElementById('x-axis-select').value;
+            const yAxis = document.getElementById('y-axis-select').value;
+            
+            const trace = {
+                x: globalJsonData.map(item => item[xAxis]),
+                y: globalJsonData.map(item => item[yAxis]),
+                mode: 'markers',
+                type: 'scatter'
+            };
+            
+            const layout = {
+                title: 'Scatter Plot',
+                xaxis: { title: xAxis },
+                yaxis: { title: yAxis }
+            };
+            
+            Plotly.newPlot('myPlot', [trace], layout);
+        } else {
+            console.error('Data has not been loaded yet.');
+        }
+    }
+    
+    // Call the function on load to populate the axis selectors
+    fetchAndParseExcel();
+    </script>
     <div class="container">
         <div class="header">
             <h1>Battery Testing Dashboard</h1>
@@ -183,70 +248,6 @@
             </tr>
         </table>
     </div>
-<select id="x-axis-select"></select>
-<select id="y-axis-select"></select>
-<button onclick="plotFromExcel()">Plot Data</button>
-<div id="myPlot"></div>
 
-<script>
-let globalJsonData = null;
-    
-// Function to fetch Excel, convert to JSON, and populate dropdowns
-function fetchAndParseExcel() {
-    fetch('TestKPI.xlsx')
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => {
-            // Parse the Excel file
-            const workbook = XLSX.read(arrayBuffer, { type: "array" });
-            const sheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[sheetName];
-            const jsonData = XLSX.utils.sheet_to_json(worksheet);
-            
-            // Assume that the first row of the Excel file is the header
-            const keys = Object.keys(jsonData[0]);
-            populateAxisSelectors(keys);
-            return jsonData;
-        });
-}
-
-// Function to populate the axis selectors
-function populateAxisSelectors(keys) {
-    const xAxisSelect = document.getElementById('x-axis-select');
-    const yAxisSelect = document.getElementById('y-axis-select');
-    
-    keys.forEach(key => {
-        xAxisSelect.options.add(new Option(key, key));
-        yAxisSelect.options.add(new Option(key, key));
-    });
-}
-
-// Function to plot data from Excel
-function plotFromExcel() {
-    if (globalJsonData) {
-        const xAxis = document.getElementById('x-axis-select').value;
-        const yAxis = document.getElementById('y-axis-select').value;
-        
-        const trace = {
-            x: globalJsonData.map(item => item[xAxis]),
-            y: globalJsonData.map(item => item[yAxis]),
-            mode: 'markers',
-            type: 'scatter'
-        };
-        
-        const layout = {
-            title: 'Scatter Plot',
-            xaxis: { title: xAxis },
-            yaxis: { title: yAxis }
-        };
-        
-        Plotly.newPlot('myPlot', [trace], layout);
-    } else {
-        console.error('Data has not been loaded yet.');
-    }
-}
-
-// Call the function on load to populate the axis selectors
-fetchAndParseExcel();
-</script>
 </body>
 </html>
