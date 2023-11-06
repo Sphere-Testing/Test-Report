@@ -188,6 +188,8 @@
 <div id="myPlot"></div>
 
 <script>
+let globalJsonData = null;
+    
 // Function to fetch Excel, convert to JSON, and populate dropdowns
 function fetchAndParseExcel() {
     fetch('TestKPI.xlsx')
@@ -219,13 +221,13 @@ function populateAxisSelectors(keys) {
 
 // Function to plot data from Excel
 function plotFromExcel() {
-    fetchAndParseExcel().then(jsonData => {
+    if (globalJsonData) {
         const xAxis = document.getElementById('x-axis-select').value;
         const yAxis = document.getElementById('y-axis-select').value;
         
         const trace = {
-            x: jsonData.map(item => item[xAxis]),
-            y: jsonData.map(item => item[yAxis]),
+            x: globalJsonData.map(item => item[xAxis]),
+            y: globalJsonData.map(item => item[yAxis]),
             mode: 'markers',
             type: 'scatter'
         };
@@ -237,7 +239,9 @@ function plotFromExcel() {
         };
         
         Plotly.newPlot('myPlot', [trace], layout);
-    });
+    } else {
+        console.error('Data has not been loaded yet.');
+    }
 }
 
 // Call the function on load to populate the axis selectors
