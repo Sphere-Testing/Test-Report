@@ -51,21 +51,25 @@
                     imagePath = 'coulomb.png';
                     break;
             }
-            function changeImageB(testType) {
-            var imagePath = '';
-            switch (testType) {
-                case 'Constant Pressure':
-                    imagePath = 'swelling3.png';
-                    break;
-                case 'CCCV Cycling':
-                    imagePath = '3c%20ocv.png';
-                    break;
-                case 'Calendar Life':
-                    imagePath = 'coulomb.png';
-                    break;
-            }
             document.getElementById('testImage').src = imagePath;
             document.getElementById('testImage').alt = testType;
+        }
+        function changeImageB(testType) {
+           var imagePath = '';
+           switch (testType) {
+               case 'Constant Pressure':
+                   imagePath = 'swelling3.png';
+                   break;
+               case 'CCCV Cycling':
+                   imagePath = '3c%20ocv.png';
+                   break;
+               case 'Calendar Life':
+                   imagePath = 'coulomb.png';
+                   break;
+            }
+            document.getElementById('testImageB').src = imagePath;
+            document.getElementById('testImageB').alt = testType;
+            
         }
     </script>
 </head>
@@ -120,7 +124,7 @@
             </table>
         </div>
         <div class="image">
-            <img id="testImageB" src="default_image.jpg" alt="Default Image" style="max-width: 100%; height: auto;">
+            <img id="testImage" src="default_image.jpg" alt="Default Image" style="max-width: 100%; height: auto;">
         </div>
     </div>
     <h2>Model B</h2>
@@ -170,7 +174,7 @@
             </table>
         </div>
         <div class="image">
-            <img id="testImage" src="default_image.jpg" alt="Default Image" style="max-width: 100%; height: auto;">
+            <img id="testImageB" src="default_image.jpg" alt="Default Image B" style="max-width: 100%; height: auto;">
         </div>
     </div>
 </body>
