@@ -39,6 +39,37 @@
             max-width: 100%;
             height: auto;
         }
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            height: 20px;
+            border-radius: 10px;
+            text-align: right;
+            line-height: 20px;
+            color: white;
+            padding-right: 5px;
+        }
+
+        .progress-section {
+            margin-top: 40px;
+        }
+
+        .progress-table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .progress-table td:first-child {
+            width: 25%;
+        }
+
+        .progress-table td:not(:first-child) {
+            width: 75%;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +114,64 @@
                 <img src="template%20graph.jpg" alt="Baseline Graph">
             </div>
         </div>
+    </div>
+     <div class="progress-section container">
+        <h2>Testing Progress</h2>
+        <h3>Alpha</h3>
+        <table class="progress-table">
+            <tr>
+                <td>Model-A</td>
+                <td>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 50%; background-color: #4caf50;">50%</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Model-B</td>
+                <td>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 70%; background-color: #2196f3;">70%</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Model-C</td>
+                <td>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 30%; background-color: #ff9800;">30%</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <h3>Bravo</h3>
+        <table class="progress-table">
+            <tr>
+                <td>Model-A</td>
+                <td>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 80%; background-color: #4caf50;">80%</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Model-B</td>
+                <td>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 55%; background-color: #2196f3;">55%</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Model-C</td>
+                <td>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 65%; background-color: #ff9800;">65%</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
