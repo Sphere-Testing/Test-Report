@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Data Overview</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .header { text-align: center; margin-top: 20px; }
-        .content { display: flex; padding: 20px; }
-        .content .image { flex: 1; text-align: right; }
-        .content .table { flex: 1; }
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .header { text-align: center; padding-bottom: 40px; }
+        .content { display: flex; justify-content: space-around; align-items: center; }
+        .table { flex: 1; padding-right: 20px; }
+        .image { flex: 1; padding-left: 20px; }
+        img { max-width: 100%; height: auto; }
+        h2 { text-align: center; }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -35,11 +37,30 @@
             border-radius: 10px;
         }
     </style>
+    <script>
+        function changeImage(testType) {
+            var imagePath = '';
+            switch (testType) {
+                case 'Constant Pressure':
+                    imagePath = 'swelling3.png';
+                    break;
+                case 'CCCV Cycling':
+                    imagePath = '3c_ocv.png';
+                    break;
+                case 'Calendar Life':
+                    imagePath = 'coulomb.png';
+                    break;
+            }
+            document.getElementById('testImage').src = imagePath;
+            document.getElementById('testImage').alt = testType;
+        }
+    </script>
 </head>
 <body>
     <div class="header">
         <h1>Data Overview</h1>
     </div>
+    <h2>Model A</h2>
     <div class="content">
         <div class="table">
             <table>
@@ -52,7 +73,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr onclick="changeImage('Constant Pressure')">
                         <td>Constant Pressure</td>
                         <td>25°C</td>
                         <td>10</td>
@@ -62,7 +83,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr onclick="changeImage('CCCV Cycling')">
                         <td>CCCV Cycling</td>
                         <td>25°C</td>
                         <td>10</td>
@@ -72,7 +93,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr onclick="changeImage('Calendar Life')">
                         <td>Calendar Life</td>
                         <td>25°C</td>
                         <td>10</td>
@@ -86,7 +107,7 @@
             </table>
         </div>
         <div class="image">
-            <img src="3c%20ocv.png" alt="3C OCV" style="max-width: 100%; height: auto;">
+            <img id="testImage" src="default_image.jpg" alt="Default Image" style="max-width: 100%; height: auto;">
         </div>
     </div>
 </body>
